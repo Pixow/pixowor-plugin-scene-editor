@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strict": false,
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "sourceMap": true,
+    "inlineSources": true,
+    "target": "es5",
+    "skipLibCheck": true,
+    "lib": ["es2015", "dom"],
+    "typeRoots": ["node_modules/@types/"],
+    "outDir": "compiler",
+    "paths": {
+      "src": ["src/"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"],
+  "files": ["src/index.ts", "./global.d.ts"],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableIvy": true 
+  }
+}

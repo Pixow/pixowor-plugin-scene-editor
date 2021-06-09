@@ -1,0 +1,45 @@
+{
+  "name": "scene-editor-plugin",
+  "version": "1.0.0",
+  "description": "场景编辑器插件",
+  "author": "moJiXiang",
+  "icon": "logo.png",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "ngcc",
+    "clear": "rimraf compiler && rimraf dist",
+    "compile": "./node_modules/.bin/ngc -p ./tsconfig.json && ./node_modules/.bin/copyfiles src/*.png compiler",
+    "build": "yarn clear &&  yarn compile && ./node_modules/.bin/rollup --config rollup.config.js"
+  },
+  "devDependencies": {
+    "@angular/compiler": "11.2.3",
+    "@angular/compiler-cli": "11.2.3",
+    "@rollup/plugin-image": "^2.0.6",
+    "clean-css": "^5.1.2",
+    "copyfiles": "^2.4.1",
+    "html-minifier": "^4.0.0",
+    "node-sass": "^6.0.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.50.1",
+    "rollup-plugin-angular": "^0.5.3",
+    "rollup-plugin-angular-ivy": "^0.6.1",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-generate-package-json": "^3.2.0",
+    "rollup-plugin-image": "^1.0.2",
+    "rollup-plugin-image-base64": "^1.0.0",
+    "rollup-plugin-image-files": "^1.4.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "4.0.2"
+  },
+  "dependencies": {
+    "@PixelPai/game-core": "^1.0.729",
+    "@angular/common": "11.2.3",
+    "@angular/core": "11.2.3",
+    "angular-pluggable": "^1.0.10",
+    "game-capsule": "git+ssh://git@code.apowo.com:PixelPai/game-capsule.git#dev",
+    "moment": "^2.29.1",
+    "rxjs": "6.6.3"
+  }
+}
