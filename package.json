@@ -1,5 +1,5 @@
 {
-  "name": "scene-editor-plugin",
+  "name": "pixowor-scene-editor-plugin",
   "version": "1.0.0",
   "description": "场景编辑器插件",
   "author": "moJiXiang",
@@ -10,12 +10,14 @@
     "postinstall": "ngcc",
     "clear": "rimraf compiler && rimraf dist",
     "compile": "./node_modules/.bin/ngc -p ./tsconfig.json && ./node_modules/.bin/copyfiles src/*.png compiler",
-    "build": "yarn clear &&  yarn compile && ./node_modules/.bin/rollup --config rollup.config.js"
+    "build": "yarn clear &&  yarn compile && ./node_modules/.bin/rollup --config rollup.config.js",
+    "dev": "node ./hot-dev.js"
   },
   "devDependencies": {
     "@angular/compiler": "11.2.3",
     "@angular/compiler-cli": "11.2.3",
     "@rollup/plugin-image": "^2.0.6",
+    "@rollup/plugin-json": "^4.1.0",
     "clean-css": "^5.1.2",
     "copyfiles": "^2.4.1",
     "html-minifier": "^4.0.0",

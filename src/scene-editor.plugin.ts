@@ -1,60 +1,57 @@
-import { Injector } from "@angular/core";
-import {  Event, FunctionNames, IPlugin, PluginStore } from "angular-pluggable";
-import { Capsule } from "game-capsule";
+import { Component, Injector } from "@angular/core";
+import { Plugin, PixoworCore, UIEvents } from "pixowor-core";
 import { SceneEditorComponent } from "./components/scene-editor/scene-editor.component";
-import { Game } from "./game";
-
-export interface ActivitybarItem {
-  title: string;
-  id: string;
-  icon: string;
-  command: () => void;
-}
-
-export class SceneEditorPlugin implements IPlugin {
-  public pluginStore: PluginStore;
-  title = "场景编辑";
-  id = "scene-editor";
-
-  getPluginName() {
-    return "scene-editor-plugin@1.0.1";
-  }
-
-  getDependencies() {
-    return [];
-  }
-
-  init(pluginStore: PluginStore) {
-    this.pluginStore = pluginStore;
+import manifest from "../manifest.json";
+export class SceneEditorPlugin extends Plugin {
+  constructor(pixoworCore: PixoworCore) {
+    super(pixoworCore, manifest);
   }
 
   activate() {
-
-    this.pluginStore.addEventListener("RenderSceneEditor", (event) => {
-      const {game, sceneId} = (event as any).data;
-
-      (this.pluginStore.getContext() as any).readGameScenePiFile(game.owner.username, game._id, game.lastVersion, sceneId)
-        .then(data => {
-          console.log(">> data: ", data)
-
-          const config = new Capsule()
-          config.deserialize(data)
-
-          console.log(">> config: ", config)
-
-          this.pluginStore.dispatchEvent(new Event("ShowInStage", {
-            id: scene.id,
-            header: `${game.name}-${scene.name}`,
-            content: game.description,
-            component: SceneEditorComponent,
-            getInjector: (inj: Injector) => {
-              return Injector.create([{provide: Game, useValue: game}], inj)
-            }
-          }))
-        })
-
+    this.pixoworCore.stateManager.registerComponent("SceneEditor", <Component>SceneEditorComponent);
+    // this.pixoworCore.workspace.on(UIEvents.)
+    this.pixoworCore.workspace.emit(UIEvents.INJECT_EDITOR_AREA, {
+      componentName: "SceneEditor",
+      header: "场景编辑器"
     })
+
+    // Insert MenuItem
+    
   }
+
+  // activate1() {
+  //   this.pluginStore.addEventListener("RenderSceneEditor", (event) => {
+  //     const { game, scene } = (event as any).data;
+
+  //     const gamePiFile = game.getGamePiFile();
+
+  //     (this.pluginStore.getContext() as any)
+  //       .readFileInUserData(gamePiFile)
+  //       .then((data) => {
+  //         console.log(">> data: ", data);
+
+  //         const config = new Capsule();
+  //         config.deserialize(data);
+
+  //         console.log(">> config: ", config);
+
+  //         this.pluginStore.dispatchEvent(
+  //           new Event("ShowInStage", {
+  //             id: scene.id,
+  //             header: `${game.name}-${scene.name}`,
+  //             content: game.description,
+  //             component: SceneEditorComponent,
+  //             getInjector: (inj: Injector) => {
+  //               return Injector.create(
+  //                 [{ provide: Game, useValue: game }],
+  //                 inj
+  //               );
+  //             },
+  //           })
+  //         );
+  //       });
+  //   });
+  // }
 
   deactivate() {}
 }

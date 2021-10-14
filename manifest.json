@@ -1,0 +1,12 @@
+{
+  "pid": "pixowor-scene-editor-plugin",
+  "name": "Pixowor Scene Editor Plugin",
+  "author": "moJiXiang",
+  "version": "1.0.5",
+  "description": "场景编辑插件",
+  "minAppVersion": "1.0.0",
+  "authorUrl": "https://github.com/moJiXiang",
+  "dependencies": {
+    "pixowor-dialog": "1.0.0"
+  }
+}

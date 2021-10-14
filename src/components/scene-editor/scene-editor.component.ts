@@ -1,63 +1,129 @@
-
-import { PluginStore, usePluginStore } from "angular-pluggable";
-import { Component, Injector, OnInit, ElementRef, ViewChild, AfterViewInit } from "@angular/core";
+import { PixoworCore } from "pixowor-core";
 import {
-  GameMain,
-  EditorLauncher,
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+} from "@angular/core";
+import {
+  EditorCanvasManager,
   EditorCanvasType,
+  SceneEditorCanvas,
+  SceneEditorEmitType,
 } from "@PixelPai/game-core";
-import { Game } from "../../game";
+import { Capsule } from "game-capsule";
 
+export interface SceneEditorTool {
+  label: string;
+  icon: string;
+  command?: Function;
+  children?: SceneEditorTool[];
+}
 @Component({
   selector: "scene-editor",
   templateUrl: "./scene-editor.component.html",
   styleUrls: ["./scene-editor.component.scss"],
 })
 export class SceneEditorComponent implements OnInit, AfterViewInit {
-  private pluginStore: PluginStore = usePluginStore();
-  private context: any = this.pluginStore.getContext();
   @ViewChild("sceneEditor") sceneEditor: ElementRef;
-  _app: GameMain;
+  sceneEditorCanvas: SceneEditorCanvas;
 
-  constructor(public game: Game) {}
+  tools: SceneEditorTool[];
+
+  constructor(private pixoworCore: PixoworCore) {}
 
   ngOnInit() {
+    this.tools = [
+      {
+        label: "笔刷设置",
+        icon: "icon-brush",
+        children: [
+          {
+            label: "物件笔刷",
+            icon: "icon-element-brush"
+          },
+          {
+            label: "地块笔刷",
+            icon: "icon-terrain-brush"
+          },
+          {
+            label: "墙体笔刷",
+            icon: "icon-wall-brush"
+          },
+          {
+            label: "擦除地块",
+            icon: "icon-terrain-erase"
+          },
+          {
+            label: "擦除墙壁",
+            icon: "icon-wall-erase"
+          },
+        ],
+      },
+      {
+        label: "镜头移动",
+        icon: "icon-camera-move"
+      },
+      {
+        label: "对象选择",
+        icon: "icon-select"
+      },
+      {
+        label: "方向翻转",
+        icon: "icon-flip"
+      },
+      {
+        label: "网格显示",
+        icon: "icon-grid"
+      },
+      {
+        label: "吸附网格",
+        icon: "icon-align-grid"
+      },
+      {
+        label: "物件堆叠",
+        icon: "icon-stask"
+      },
+      {
+        label: "行走区域",
+        icon: "icon-walk-area"
+      },
+    ];
   }
 
-
   ngAfterViewInit() {
-    this.start()
+    setTimeout(() => {
+      this.start();
+    }, 0);
   }
 
   start() {
-
     const { offsetWidth, offsetHeight } = this.sceneEditor.nativeElement;
 
-    const {
-      TEST_GAME_CONFIG_IP_MOBILE,
-      TEST_GAME_CONFIG_PORT_MOBILE,
-      API_URL,
-      WEB_RESOURCE_URI,
-    } = this.context.getGameServerConfig();
+    const capsule = new Capsule();
+    const scene = capsule.add.scene(10, 10);
+    scene.link();
 
-    this._app = EditorLauncher.CreateCanvas(EditorCanvasType.Scene, {
-      width: offsetWidth,
-      height: offsetHeight,
-      connection: this.context.socket,
-      game_id: this.game._id,
-      isEditor: true,
-      runtime: "editor",
-      api_root: API_URL,
-      osd: WEB_RESOURCE_URI,
-      parent: "scene",
-      server_addr: {
-        host: TEST_GAME_CONFIG_IP_MOBILE,
-        port: TEST_GAME_CONFIG_PORT_MOBILE,
-        secure: true,
-      },
-      game_created: () => {
-      
-      },
+    // 获取游戏服务器的配置
+    const { WEB_RESOURCE_URI } = this.pixoworCore.settings;
+
+    this.sceneEditorCanvas = EditorCanvasManager.CreateCanvas(
+      EditorCanvasType.Scene,
+      {
+        width: offsetWidth,
+        height: offsetHeight,
+        parent: "sceneEditor",
+        node: {
+          game: capsule,
+          scene: scene,
+        },
+        osdPath: WEB_RESOURCE_URI,
+      }
+    ) as SceneEditorCanvas;
+
+    this.sceneEditorCanvas.on(SceneEditorEmitType.SceneCreated, () => {
+      // this.sceneEditorCanvas.init();
     });
   }
 }

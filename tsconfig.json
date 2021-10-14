@@ -3,11 +3,12 @@
     "baseUrl": ".",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strict": false,
+    "strict": true,
     "strictPropertyInitialization": false,
-    "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "rootDir": ".",
     "sourceMap": true,
     "inlineSources": true,
@@ -15,14 +16,11 @@
     "skipLibCheck": true,
     "lib": ["es2015", "dom"],
     "typeRoots": ["node_modules/@types/"],
-    "outDir": "compiler",
-    "paths": {
-      "src": ["src/"]
-    }
+    "outDir": "compiler"
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"],
-  "files": ["src/index.ts", "./global.d.ts"],
+  "files": ["src/index.ts"],
   "angularCompilerOptions": {
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,

@@ -1,8 +1,8 @@
 import generatePackageJson from "rollup-plugin-generate-package-json";
+import json from "@rollup/plugin-json";
 import copy from "rollup-plugin-copy";
 import angular from "rollup-plugin-angular-ivy";
 import typescript from 'rollup-plugin-typescript2';
-import image from '@rollup/plugin-image';
 import sass from "node-sass";
 import CleanCSS from "clean-css";
 import { minify as minifyHtml } from "html-minifier";
@@ -21,7 +21,7 @@ export default {
     format: "system",
   },
   plugins: [
-    image(),
+    json(),
     angular({
       replace: false,
       preprocessors: {
@@ -33,21 +33,27 @@ export default {
       },
     }),
     typescript(),
-    copy({
-      targets: [{ src: "src/logo.png", dest: "dist" }],
-    }),
     generatePackageJson({
       baseContents: (pkg) => ({
         name: pkg.name,
         description: pkg.description,
         version: pkg.version,
         author: pkg.author,
-        icon: pkg.icon,
       }),
       output: "dist",
     }),
+    copy({
+      targets: [{ src: "manifest.json", dest: "dist" }],
+    }),
   ],
-  external: ["@angular/core", "@angular/common", "angular-pluggable", "rxjs", "game-capsule"],
+  external: [
+    "@PixelPai/game-core",
+    "@angular/core",
+    "@angular/common",
+    "pixowor-core",
+    "rxjs",
+    "game-capsule",
+  ],
   onwarn: function (warning) {
     if (
       warning.code === "THIS_IS_UNDEFINED" ||
