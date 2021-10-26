@@ -69,6 +69,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@angular/core@^12.2.2":
+  version "12.2.11"
+  resolved "https://registry.npmmirror.com/@angular/core/download/@angular/core-12.2.11.tgz#b11056d5e4e8933b2cfba7c3d2f49386dceda63d"
+  integrity sha1-sRBW1eTokzss+6fD0vSThtztpj0=
+  dependencies:
+    tslib "^2.2.0"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13":
   version "7.12.13"
   resolved "https://registry.npm.taobao.org/@babel/code-frame/download/@babel/code-frame-7.12.13.tgz#dcfc826beef65e75c50e21d3837d7d95798dd658"
@@ -234,10 +241,25 @@
   resolved "https://registry.nlark.com/@babel/parser/download/@babel/parser-7.14.4.tgz?cache=0&sync_timestamp=1622221315015&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fparser%2Fdownload%2F%40babel%2Fparser-7.14.4.tgz#a5c560d6db6cd8e6ed342368dea8039232cbab18"
   integrity sha1-pcVg1tts2ObtNCNo3qgDkjLLqxg=
 
+"@babel/runtime-corejs2@^7.10.2":
+  version "7.15.4"
+  resolved "https://registry.nlark.com/@babel/runtime-corejs2/download/@babel/runtime-corejs2-7.15.4.tgz#dda5554d18e2ebd4e374e73708590e72e1e674f7"
+  integrity sha1-3aVVTRji69TjdOc3CFkOcuHmdPc=
+  dependencies:
+    core-js "^2.6.5"
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.12.0", "@babel/runtime@^7.5.5":
   version "7.14.0"
   resolved "https://registry.nlark.com/@babel/runtime/download/@babel/runtime-7.14.0.tgz?cache=0&sync_timestamp=1619727501090&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
   integrity sha1-RnlLwgthLF915i3QceJN/ZXxy+Y=
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.12.5":
+  version "7.15.4"
+  resolved "https://registry.nlark.com/@babel/runtime/download/@babel/runtime-7.15.4.tgz?cache=0&sync_timestamp=1630619277795&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
+  integrity sha1-/RfRa/34eObdAtGXU6OfqKjZyEo=
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -588,15 +610,6 @@ amdefine@>=0.0.4:
   resolved "https://registry.nlark.com/amdefine/download/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-angular-pluggable@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.nlark.com/angular-pluggable/download/angular-pluggable-1.0.10.tgz#d53c0e799a1850c4be49d543e4a0b0b397abd090"
-  integrity sha1-1TwOeZoYUMS+SdVD5KCws5er0JA=
-  dependencies:
-    "@angular/common" "11.2.3"
-    "@angular/core" "11.2.3"
-    rxjs "^7.0.1"
-
 ansi-colors@^3.0.0:
   version "3.2.4"
   resolved "https://registry.nlark.com/ansi-colors/download/ansi-colors-3.2.4.tgz#e3a3da4bfbae6c86a9c285625de124a234026fbf"
@@ -770,6 +783,13 @@ aws4@^1.8.0:
   version "1.11.0"
   resolved "https://registry.nlark.com/aws4/download/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha1-1h9G2DslGSUOJ4Ta9bCUeai0HFk=
+
+axios@^0.21.0:
+  version "0.21.4"
+  resolved "https://registry.npmmirror.com/axios/download/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
+  integrity sha1-xnuQ3AVo5cHPKwuFjEO6KOLtpXU=
+  dependencies:
+    follow-redirects "^1.14.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -1053,6 +1073,11 @@ chownr@^2.0.0:
   resolved "https://registry.npm.taobao.org/chownr/download/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha1-Fb++U9LqtM9w8YqM1o6+Wzyx3s4=
 
+class-transformer@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npm.taobao.org/class-transformer/download/class-transformer-0.4.0.tgz#b52144117b423c516afb44cc1c76dbad31c2165b"
+  integrity sha1-tSFEEXtCPFFq+0TMHHbbrTHCFls=
+
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "https://registry.npm.taobao.org/class-utils/download/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
@@ -1266,6 +1291,11 @@ copyfiles@^2.4.1:
     through2 "^2.0.1"
     untildify "^4.0.0"
     yargs "^16.1.0"
+
+core-js@^2.6.5:
+  version "2.6.12"
+  resolved "https://registry.npmmirror.com/core-js/download/core-js-2.6.12.tgz?cache=0&sync_timestamp=1635142905717&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcore-js%2Fdownload%2Fcore-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
+  integrity sha1-2TM9+nsGXjR8xWgiGdb2kIWcwuw=
 
 core-util-is@1.0.2:
   version "1.0.2"
@@ -1530,6 +1560,14 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+electron-re@^1.0.10:
+  version "1.1.0"
+  resolved "https://registry.npmmirror.com/electron-re/download/electron-re-1.1.0.tgz#a33db7b3ba4627b9b3f8f89be38eae7385611d64"
+  integrity sha1-oz23s7pGJ7mz+Pib446uc4VhHWQ=
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    pidusage "^2.0.21"
+
 electron-to-chromium@^1.3.723:
   version "1.3.740"
   resolved "https://registry.nlark.com/electron-to-chromium/download/electron-to-chromium-1.3.740.tgz#e38b7d2b848f632191b643e6dabca51be2162922"
@@ -1675,6 +1713,11 @@ eventemitter3@^4.0.4:
   version "4.0.7"
   resolved "https://registry.nlark.com/eventemitter3/download/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha1-Lem2j2Uo1WRO9cWVJqG0oHMGFp8=
+
+events@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.npm.taobao.org/events/download/events-3.3.0.tgz?cache=0&sync_timestamp=1614444838320&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fevents%2Fdownload%2Fevents-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
+  integrity sha1-Mala0Kkk4tLEGagTrrLE6HjqdAA=
 
 expand-brackets@^2.1.4:
   version "2.1.4"
@@ -1854,6 +1897,11 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
+
+follow-redirects@^1.14.0:
+  version "1.14.4"
+  resolved "https://registry.nlark.com/follow-redirects/download/follow-redirects-1.14.4.tgz?cache=0&sync_timestamp=1631622129411&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.14.4.tgz#838fdf48a8bbdd79e52ee51fb1c94e3ed98b9379"
+  integrity sha1-g4/fSKi73XnlLuUfsclOPtmLk3k=
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -3455,6 +3503,11 @@ object-inspect@^1.10.3:
   resolved "https://registry.nlark.com/object-inspect/download/object-inspect-1.10.3.tgz?cache=0&sync_timestamp=1620446150016&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fobject-inspect%2Fdownload%2Fobject-inspect-1.10.3.tgz#c2aa7d2d09f50c99375704f7a0adf24c5782d369"
   integrity sha1-wqp9LQn1DJk3VwT3oK3yTFeC02k=
 
+object-inspect@^1.9.0:
+  version "1.11.0"
+  resolved "https://registry.nlark.com/object-inspect/download/object-inspect-1.11.0.tgz#9dceb146cedd4148a0d9e51ab88d34cf509922b1"
+  integrity sha1-nc6xRs7dQUig2eUauI00z1CZIrE=
+
 object-keys@^1.0.12, object-keys@^1.1.1:
   version "1.1.1"
   resolved "https://registry.nlark.com/object-keys/download/object-keys-1.1.1.tgz?cache=0&sync_timestamp=1618847173787&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fobject-keys%2Fdownload%2Fobject-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
@@ -3696,6 +3749,13 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3:
   resolved "https://registry.nlark.com/picomatch/download/picomatch-2.3.0.tgz?cache=0&sync_timestamp=1621648246651&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpicomatch%2Fdownload%2Fpicomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha1-8fBh3o9qS/AiiS4tEoI0+5gwKXI=
 
+pidusage@^2.0.21:
+  version "2.0.21"
+  resolved "https://registry.nlark.com/pidusage/download/pidusage-2.0.21.tgz#7068967b3d952baea73e57668c98b9eaa876894e"
+  integrity sha1-cGiWez2VK66nPldmjJi56qh2iU4=
+  dependencies:
+    safe-buffer "^5.2.1"
+
 pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.npm.taobao.org/pify/download/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -3728,6 +3788,28 @@ pinkie@^2.0.0:
   resolved "git+ssh://git@code.apowo.com:PixelPai/pixelpai_proto.git#7bd7ef7a54f8947878bffc455c28ff544b2da440"
   dependencies:
     protobufjs "^6.8.8"
+
+"pixow-api@git+ssh://git@github.com:Pixow/pixow-api.git#develop":
+  version "0.0.2"
+  resolved "git+ssh://git@github.com:Pixow/pixow-api.git#444b2a6f6001559c7d11bae026b72798d4596d92"
+  dependencies:
+    axios "^0.21.0"
+    class-transformer "^0.4.0"
+    qs "^6.9.4"
+    reflect-metadata "^0.1.13"
+    side-channel "^1.0.4"
+
+"pixowor-core@git+ssh://git@github.com:Pixow/pixowor-core.git#develop":
+  version "1.0.15"
+  resolved "git+ssh://git@github.com:Pixow/pixowor-core.git#86fd2ea02d46ceea67b0467a91048887b5cf250b"
+  dependencies:
+    "@angular/core" "^12.2.2"
+    electron-re "^1.0.10"
+    events "^3.3.0"
+    pixow-api "git+ssh://git@github.com:Pixow/pixow-api.git#develop"
+    qiniu-js "^3.3.3"
+    rxjs "6.6.3"
+    semver "^7.3.5"
 
 pkg-dir@^2.0.0:
   version "2.0.0"
@@ -3887,10 +3969,31 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.nlark.com/punycode/download/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
 
+qiniu-js@^3.3.3:
+  version "3.4.0"
+  resolved "https://registry.npmmirror.com/qiniu-js/download/qiniu-js-3.4.0.tgz#36980de07be4bab229ec0193a32c3318aa24b748"
+  integrity sha1-NpgN4HvkurIp7AGToywzGKokt0g=
+  dependencies:
+    "@babel/runtime-corejs2" "^7.10.2"
+    querystring "^0.2.1"
+    spark-md5 "^3.0.0"
+
+qs@^6.9.4:
+  version "6.10.1"
+  resolved "https://registry.nlark.com/qs/download/qs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
+  integrity sha1-STFIL6jWR6Wqt5nFJx0hM7mB+2o=
+  dependencies:
+    side-channel "^1.0.4"
+
 qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha1-yzroBuh0BERYTvFUzo7pjUA/PjY=
+
+querystring@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.nlark.com/querystring/download/querystring-0.2.1.tgz?cache=0&sync_timestamp=1626179435543&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fquerystring%2Fdownload%2Fquerystring-0.2.1.tgz#40d77615bb09d16902a85c3e38aa8b5ed761c2dd"
+  integrity sha1-QNd2FbsJ0WkCqFw+OKqLXtdhwt0=
 
 queue-microtask@^1.2.2:
   version "1.2.3"
@@ -3975,7 +4078,7 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
-reflect-metadata@^0.1.2:
+reflect-metadata@^0.1.13, reflect-metadata@^0.1.2:
   version "0.1.13"
   resolved "https://registry.npm.taobao.org/reflect-metadata/download/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
   integrity sha1-Z648pXyXKiqhZCsQ/jY/4y1J3Ag=
@@ -4290,14 +4393,7 @@ rxjs@6.6.3:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^7.0.1:
-  version "7.1.0"
-  resolved "https://registry.nlark.com/rxjs/download/rxjs-7.1.0.tgz?cache=0&sync_timestamp=1621619391474&other_urls=https%3A%2F%2Fregistry.nlark.com%2Frxjs%2Fdownload%2Frxjs-7.1.0.tgz#94202d27b19305ef7b1a4f330277b2065df7039e"
-  integrity sha1-lCAtJ7GTBe97Gk8zAneyBl33A54=
-  dependencies:
-    tslib "~2.1.0"
-
-safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.2.0:
+safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@^5.2.1, safe-buffer@~5.2.0:
   version "5.2.1"
   resolved "https://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
   integrity sha1-Hq+fqb2x/dTsdfWPnNtOa3gn7sY=
@@ -4378,9 +4474,9 @@ semver@^6.0.0, semver@^6.3.0:
   resolved "https://registry.npm.taobao.org/semver/download/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=
 
-semver@^7.3.2, semver@^7.3.4:
+semver@^7.3.2, semver@^7.3.4, semver@^7.3.5:
   version "7.3.5"
-  resolved "https://registry.nlark.com/semver/download/semver-7.3.5.tgz?cache=0&sync_timestamp=1622685835879&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsemver%2Fdownload%2Fsemver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
+  resolved "https://registry.nlark.com/semver/download/semver-7.3.5.tgz?cache=0&sync_timestamp=1618846864940&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsemver%2Fdownload%2Fsemver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
   integrity sha1-C2Ich5NI2JmOSw5L6Us/EuYBjvc=
   dependencies:
     lru-cache "^6.0.0"
@@ -4431,6 +4527,15 @@ shebang-regex@^3.0.0:
   version "3.0.0"
   resolved "https://registry.nlark.com/shebang-regex/download/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha1-rhbxZE2HPsrYQ7AwexQzYtTEIXI=
+
+side-channel@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/side-channel/download/side-channel-1.0.4.tgz#efce5c8fdc104ee751b25c58d4290011fa5ea2cf"
+  integrity sha1-785cj9wQTudRslxY1CkAEfpeos8=
+  dependencies:
+    call-bind "^1.0.0"
+    get-intrinsic "^1.0.2"
+    object-inspect "^1.9.0"
 
 sigmund@~1.0.0:
   version "1.0.1"
@@ -4568,6 +4673,11 @@ sourcemap-codec@^1.4.4, sourcemap-codec@^1.4.8:
   version "1.4.8"
   resolved "https://registry.npm.taobao.org/sourcemap-codec/download/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
   integrity sha1-6oBL2UhXQC5pktBaOO8a41qatMQ=
+
+spark-md5@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.nlark.com/spark-md5/download/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
+  integrity sha1-eVLEoweENHq87nMmjkc7nAFn4/w=
 
 spdx-correct@^3.0.0:
   version "3.1.1"
@@ -4951,7 +5061,7 @@ ts-loader@^6.2.1:
     micromatch "^4.0.0"
     semver "^6.0.0"
 
-tslib@2.1.0, tslib@~2.1.0:
+tslib@2.1.0:
   version "2.1.0"
   resolved "https://registry.nlark.com/tslib/download/tslib-2.1.0.tgz?cache=0&sync_timestamp=1618847097275&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ftslib%2Fdownload%2Ftslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha1-2mCGDxwuyqVwOrfTm8Bba/mIuXo=
@@ -4966,7 +5076,7 @@ tslib@^2.0.0, tslib@^2.0.3:
   resolved "https://registry.nlark.com/tslib/download/tslib-2.2.0.tgz?cache=0&sync_timestamp=1618847132149&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ftslib%2Fdownload%2Ftslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha1-+yxHWXfjXiQTEe3iaTzuHsZpj1w=
 
-tslib@^2.1.0:
+tslib@^2.1.0, tslib@^2.2.0:
   version "2.3.1"
   resolved "https://registry.nlark.com/tslib/download/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha1-6KM1rdXOrlGqJh0ypJAVjvBC7wE=
