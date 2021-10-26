@@ -7,6 +7,7 @@ import {
   AfterViewInit,
 } from "@angular/core";
 import {
+  BrushMode,
   EditorCanvasManager,
   EditorCanvasType,
   SceneEditorCanvas,
@@ -17,6 +18,7 @@ import { Capsule } from "game-capsule";
 export interface SceneEditorTool {
   label: string;
   icon: string;
+  active?: boolean;
   command?: Function;
   children?: SceneEditorTool[];
 }
@@ -33,7 +35,15 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
 
   constructor(private pixoworCore: PixoworCore) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.start();
+    }, 0);
+  }
+
+  initSceneEditorTools() {
     this.tools = [
       {
         label: "笔刷设置",
@@ -41,61 +51,65 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
         children: [
           {
             label: "物件笔刷",
-            icon: "icon-element-brush"
+            icon: "icon-element-brush",
           },
           {
             label: "地块笔刷",
-            icon: "icon-terrain-brush"
+            icon: "icon-terrain-brush",
           },
           {
             label: "墙体笔刷",
-            icon: "icon-wall-brush"
+            icon: "icon-wall-brush",
           },
+        ],
+      },
+      {
+        label: "橡皮擦",
+        icon: "icon-erase",
+        children: [
           {
             label: "擦除地块",
-            icon: "icon-terrain-erase"
+            icon: "icon-terrain-erase",
           },
           {
             label: "擦除墙壁",
-            icon: "icon-wall-erase"
+            icon: "icon-wall-erase",
           },
         ],
       },
       {
         label: "镜头移动",
-        icon: "icon-camera-move"
+        icon: "icon-camera-move",
+        active: false,
+        command: () => {
+          this.sceneEditorCanvas.changeBrushType(BrushMode.Move);
+        },
       },
       {
         label: "对象选择",
-        icon: "icon-select"
+        icon: "icon-select",
       },
       {
         label: "方向翻转",
-        icon: "icon-flip"
+        icon: "icon-flip",
       },
       {
         label: "网格显示",
-        icon: "icon-grid"
+        icon: "icon-grid",
       },
       {
         label: "吸附网格",
-        icon: "icon-align-grid"
+        icon: "icon-align-grid",
       },
       {
         label: "物件堆叠",
-        icon: "icon-stask"
+        icon: "icon-stack",
       },
       {
         label: "行走区域",
-        icon: "icon-walk-area"
+        icon: "icon-walk-area",
       },
     ];
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.start();
-    }, 0);
   }
 
   start() {
@@ -124,6 +138,15 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
 
     this.sceneEditorCanvas.on(SceneEditorEmitType.SceneCreated, () => {
       // this.sceneEditorCanvas.init();
+      this.initSceneEditorTools();
     });
   }
+
+  public handleUseTool(item: SceneEditorTool) {
+    item.command && item.command();
+
+    if (item.hasOwnProperty("active")) item.active = true;
+  }
+
+
 }

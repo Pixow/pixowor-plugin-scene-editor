@@ -2,17 +2,20 @@ import generatePackageJson from "rollup-plugin-generate-package-json";
 import json from "@rollup/plugin-json";
 import copy from "rollup-plugin-copy";
 import angular from "rollup-plugin-angular-ivy";
-import typescript from 'rollup-plugin-typescript2';
+import typescript from "rollup-plugin-typescript2";
 import sass from "node-sass";
 import CleanCSS from "clean-css";
 import { minify as minifyHtml } from "html-minifier";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 const cssmin = new CleanCSS();
 const htmlminOpts = {
   caseSensitive: true,
   collapseWhitespace: true,
   removeComments: true,
 };
-
+const postcss = require("postcss");
+const base64 = require("postcss-base64");
 
 export default {
   input: "compiler/src/index.js",
@@ -21,6 +24,8 @@ export default {
     format: "system",
   },
   plugins: [
+    nodeResolve(), 
+    commonjs(),
     json(),
     angular({
       replace: false,
@@ -28,7 +33,15 @@ export default {
         template: (template) => minifyHtml(template, htmlminOpts),
         style: (scss) => {
           const css = sass.renderSync({ data: scss }).css;
-          return cssmin.minify(css).styles;
+          const styles = cssmin.minify(css).styles;
+
+          const opts = {
+            extensions: [".png", ".svg"], // Replaces png and svg files
+            root: __dirname,
+          };
+          const output = postcss().use(base64(opts)).process(styles).css;
+
+          return output;
         },
       },
     }),

@@ -16,12 +16,16 @@
   "devDependencies": {
     "@angular/compiler": "11.2.3",
     "@angular/compiler-cli": "11.2.3",
+    "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-image": "^2.0.6",
     "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
     "clean-css": "^5.1.2",
     "copyfiles": "^2.4.1",
     "html-minifier": "^4.0.0",
     "node-sass": "^6.0.0",
+    "postcss": "^8.3.9",
+    "postcss-base64": "^0.7.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.50.1",
     "rollup-plugin-angular": "^0.5.3",
@@ -42,6 +46,7 @@
     "angular-pluggable": "^1.0.10",
     "game-capsule": "git+ssh://git@code.apowo.com:PixelPai/game-capsule.git#dev",
     "moment": "^2.29.1",
+    "ngx-tippy-wrapper": "^3.0.1",
     "rxjs": "6.6.3"
   }
 }

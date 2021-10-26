@@ -1,22 +1,32 @@
-
 <div class="scene-editor-container">
-	<div class="scene-editor-tools">
-	  <div class="tool-item" *ngFor="let item of tools">
-		<!-- <i class="icon" [ngClass]="item.icon" (click)="item.command()"></i> -->
-	
-		<!-- <ng-container *ngIf="item.children">
-		  <div class="tool-item-children">
-			<i
-			  class="icon"
-			  *ngFor="let child of item.children"
-			  [ngClass]="child.icon"
-			  (click)="child.command()"
-			></i>
-		  </div>
-		</ng-container> -->
-	  </div>
-	</div>
+  <div class="scene-editor-tools">
+    <div
+      class="tool-item parent"
+      [ngClass]="{ active: item.active }"
+      *ngFor="let item of tools"
+      (click)="handleUseTool(item)"
+      ngxTippy
+      [tippyProps]="{
+        content: item.label,
+		'placement': 'left'
+      }"
+    >
+      <i class="icon" [ngClass]="item.icon"></i>
 
-	<div class="scene-editor" id="sceneEditor" #sceneEditor></div>
+      <ng-template *ngIf="item.children">
+        <div class="tool-item-children">
+          <div
+            class="tool-item"
+            [ngClass]="{ active: child.active }"
+            *ngFor="let child of item.children"
+            (click)="handleUseTool(item)"
+          >
+            <i class="icon" [ngClass]="child.icon"></i>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="scene-editor" id="sceneEditor" #sceneEditor></div>
 </div>
-
