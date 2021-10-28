@@ -43,7 +43,7 @@
     "@PixelPai/game-core": "git+ssh://git@code.apowo.com:PixelPai/game-core.git#scene_editor",
     "@angular/common": "11.2.3",
     "@angular/core": "11.2.3",
-    "game-capsule": "git+ssh://git@code.apowo.com:PixelPai/game-capsule.git#feature/new-avatar",
+    "game-capsule": "git+ssh://git@code.apowo.com:PixelPai/game-capsule.git#v2",
     "moment": "^2.29.1",
     "ngx-tippy-wrapper": "^3.0.1",
     "pixowor-core": "git+ssh://git@github.com:Pixow/pixowor-core.git#develop",
