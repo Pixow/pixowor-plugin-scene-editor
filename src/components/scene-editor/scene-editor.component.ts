@@ -116,11 +116,16 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
     const { offsetWidth, offsetHeight } = this.sceneEditor.nativeElement;
 
     const capsule = new Capsule();
-    const scene = capsule.add.scene(10, 10);
+    const scene = capsule.add.scene();
+    if (scene.mapSize) {
+      scene.mapSize.rows = 10;
+      scene.mapSize.cols = 10;
+    }
     scene.link();
 
     // 获取游戏服务器的配置
     const { WEB_RESOURCE_URI } = this.pixoworCore.settings;
+
 
     this.sceneEditorCanvas = EditorCanvasManager.CreateCanvas(
       EditorCanvasType.Scene,
@@ -136,10 +141,18 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
       }
     ) as SceneEditorCanvas;
 
+    this.pixoworCore.stateManager.registerVariable(
+      "SceneEditorCanvas",
+      this.sceneEditorCanvas
+    );
+
+
     this.sceneEditorCanvas.on(SceneEditorEmitType.SceneCreated, () => {
       // this.sceneEditorCanvas.init();
       this.initSceneEditorTools();
     });
+
+    this.sceneEditorCanvas.on(SceneEditorEmitType.SyncSprite, () => {})
   }
 
   public handleUseTool(item: SceneEditorTool) {
