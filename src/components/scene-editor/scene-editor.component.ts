@@ -273,8 +273,10 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
           const {x, y, z, key, id} = moss;
 
           const element = this.sceneNode.cap.add.element(this.sceneNode);
-          element.location?.x = x;
-          element.location?.y = y;
+          if (element.location) {
+            element.location.x = x;
+            element.location.y = y;
+          }
         }
       }
     );
