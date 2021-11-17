@@ -31,10 +31,17 @@
       position: relative;
     }
 
-
+    .tool-item-children {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 40px;
+    }
 
     &.active {
-      background: aqua;
+      .tool-item-children {
+        display: block;
+      }
     }
 
     &.disable {
