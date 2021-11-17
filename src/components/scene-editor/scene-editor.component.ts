@@ -56,18 +56,20 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.editingGame = this.pixoworCore.getEditingGame()
 
-    this.pixoworCore.stateManager.getVariable("GameCapsule").subscribe((gameCapsule: Capsule) => {
+    this.pixoworCore.stateManager.getVariable<Capsule>("GameCapsule").subscribe((gameCapsule: Capsule) => {
       if (gameCapsule) {
         this.gameNode = gameCapsule.treeNodes[0] as GameNode;
       }
     })
-    this.pixoworCore.stateManager.getVariable("SceneCapsule").subscribe((sceneCapsule: Capsule) => {
-      if (sceneCapsule) {
-        this.sceneNode = sceneCapsule.treeNodes[0] as SceneNode;
+    this.pixoworCore.stateManager
+      .getVariable<Capsule>("SceneCapsule")
+      .subscribe((sceneCapsule: Capsule) => {
+        if (sceneCapsule) {
+          this.sceneNode = sceneCapsule.treeNodes[0] as SceneNode;
 
-        this.createSceneCanvas();
-      }
-    })
+          this.createSceneCanvas();
+        }
+      });
 
 
   }
@@ -210,7 +212,7 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
           game: this.gameNode,
           scene: this.sceneNode,
         },
-        gameDir: "file://" + this.editingGame.filePath,
+        gameDir: "file://" + this.editingGame.filePath + "/",
         osdPath: WEB_RESOURCE_URI,
       }
     ) as SceneEditorCanvas;
@@ -273,6 +275,7 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
           const {x, y, z, key, id} = moss;
 
           const element = this.sceneNode.cap.add.element(this.sceneNode);
+          element.ref = key;
           if (element.location) {
             element.location.x = x;
             element.location.y = y;
