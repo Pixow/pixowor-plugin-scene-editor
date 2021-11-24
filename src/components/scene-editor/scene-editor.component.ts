@@ -10,7 +10,7 @@ import {
 import {
   BrushMode,
   EditorCanvasManager,
-  EditorCanvasType,
+  EditorCanvasType, ElementInstance,
   IMoss,
   IPos,
   SceneEditorCanvas,
@@ -234,7 +234,7 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
     this.sceneEditorCanvas.on(SceneEditorEmitType.SceneCreated, () => {});
     // 同步模板及装饰物件
     this.sceneEditorCanvas.on(
-      SceneEditorEmitType.SyncPaletteOrMoss,
+      SceneEditorEmitType.SyncPaletteOrPrefab,
       (key: number, type: op_def.NodeType) => {
         console.log("SyncPaletteOrMoss: ", key, type);
       }
@@ -257,42 +257,21 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
     );
     // 创建物件
     this.sceneEditorCanvas.on(
-      SceneEditorEmitType.CreateSprite,
-      (nodeType: op_def.NodeType, sprites: op_client.ISprite[]) => {
-        console.log("CreateSprite: ", nodeType, sprites);
-      }
-    );
-    // 同步物件
-    this.sceneEditorCanvas.on(
-      SceneEditorEmitType.SyncSprite,
-      (sprites: op_client.ISprite[]) => {
-        console.log("SyncSprite: ", sprites);
-      }
-    );
-    // 删除物件
-    this.sceneEditorCanvas.on(
-      SceneEditorEmitType.DeleteSprite,
-      (ids: number[], nodeType: op_def.NodeType) => {
-        console.log("DeleteSprite: ", ids, nodeType);
-      }
-    );
-    // 创建装饰物
-    this.sceneEditorCanvas.on(
-      SceneEditorEmitType.CreateMoss,
-      (mosses: IMoss[]) => {
-        console.log("CreateMoss: ", mosses);
-        for (const moss of mosses) {
-          const {x, y, key, id} = moss;
+      SceneEditorEmitType.CreateElement,
+      (datas: ElementInstance[]) => {
+        console.log("CreateElement: ", datas);
+        for (const moss of datas) {
+          const {location, ref, id} = moss;
 
           // Use ElementPrefab to create this element instance
           const cap = new Capsule();
           const element = cap.add.element();
           element.id = id;
-          element.ref = key;
+          element.ref = ref;
           element.parentId = this.sceneNode.id;
-          if (element.location) {
-            element.location.x = x;
-            element.location.y = y;
+          if (location && element.location) {
+            element.location.x = location.x;
+            element.location.y = location.y;
           }
 
           const elementInstance = element.createElementInstance();
@@ -302,18 +281,18 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
         this.pixoworCore.state.getVariable<Capsule>("SceneCapsule").next(this.sceneNode.cap);
       }
     );
-    // 同步装饰物
+    // 同步物件
     this.sceneEditorCanvas.on(
-      SceneEditorEmitType.SyncMoss,
-      (mosses: IMoss[]) => {
-        console.log("SyncMoss: ", mosses);
+      SceneEditorEmitType.SyncElement,
+      (datas: ElementInstance[]) => {
+        console.log("SyncElement: ", datas);
       }
     );
-    // 删除装饰物
+    // 删除物件
     this.sceneEditorCanvas.on(
-      SceneEditorEmitType.DeleteMoss,
-      (mosses: IMoss[]) => {
-        console.log("DeleteMoss: ", mosses);
+      SceneEditorEmitType.DeleteElement,
+      (ids: number[]) => {
+        console.log("DeleteElement: ", ids);
       }
     );
     // 创建墙体
