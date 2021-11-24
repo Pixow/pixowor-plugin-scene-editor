@@ -1,2 +1,2 @@
-import { SceneEditorPlugin } from "./scene-editor.plugin";
+import { SceneEditorPlugin } from "./plugin";
 export default SceneEditorPlugin;

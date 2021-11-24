@@ -1,4 +1,4 @@
-import { PixoworCore, FileConfig } from "pixowor-core";
+import { PixoworCore, FileConfig, EDITING_GAME } from "pixowor-core";
 import {
   Component,
   OnInit,
@@ -16,7 +16,7 @@ import {
   SceneEditorCanvas,
   SceneEditorEmitType,
 } from "@PixelPai/game-core";
-import { Capsule, GameNode, SceneNode } from "game-capsule";
+import { Capsule, GameNode, NodeType, SceneNode } from "game-capsule";
 import { op_def, op_client, op_editor} from "pixelpai_proto";
 
 export interface SceneEditorTool {
@@ -45,6 +45,7 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
   activeTool: SceneEditorTool;
 
   editingGame: FileConfig;
+  editingSceneId: number;
   gameNode: GameNode;
   sceneNode: SceneNode;
 
@@ -54,19 +55,23 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.editingGame = this.pixoworCore.getEditingGame()
+    this.editingGame = this.pixoworCore.getEditingObject(EDITING_GAME);
 
-    this.pixoworCore.stateManager.getVariable<Capsule>("GameCapsule").subscribe((gameCapsule: Capsule) => {
+    this.pixoworCore.state.getVariable<Capsule>("GameCapsule").subscribe((gameCapsule: Capsule) => {
       if (gameCapsule) {
         this.gameNode = gameCapsule.treeNodes[0] as GameNode;
       }
     })
-    this.pixoworCore.stateManager
+    this.pixoworCore.state
       .getVariable<Capsule>("SceneCapsule")
       .subscribe((sceneCapsule: Capsule) => {
         if (sceneCapsule) {
           this.sceneNode = sceneCapsule.treeNodes[0] as SceneNode;
 
+          if (this.editingSceneId && this.editingSceneId === this.sceneNode.id) {
+            return;
+          }
+          this.editingSceneId = this.sceneNode.id;
           this.createSceneCanvas();
         }
       });
@@ -150,6 +155,9 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
       {
         label: "方向翻转",
         icon: "icon-flip",
+        command: () => {
+          // this.sceneEditorCanvas.
+        }
       },
       {
         label: "网格显示",
@@ -217,7 +225,7 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
       }
     ) as SceneEditorCanvas;
 
-    this.pixoworCore.stateManager.registerVariable(
+    this.pixoworCore.state.registerVariable(
       "SceneEditorCanvas",
       this.sceneEditorCanvas
     );
@@ -236,6 +244,8 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
       SceneEditorEmitType.ElementSelected,
       (ids: number[], nodeType: op_def.NodeType, isMoss: boolean) => {
         console.log("ElementSelected: ", ids, nodeType, isMoss);
+
+        this.pixoworCore.state.getVariable("SelectedElements").next(ids);
       }
     );
     // 更新天空盒
@@ -272,15 +282,24 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
       (mosses: IMoss[]) => {
         console.log("CreateMoss: ", mosses);
         for (const moss of mosses) {
-          const {x, y, z, key, id} = moss;
+          const {x, y, key, id} = moss;
 
-          const element = this.sceneNode.cap.add.element(this.sceneNode);
+          // Use ElementPrefab to create this element instance
+          const cap = new Capsule();
+          const element = cap.add.element();
+          element.id = id;
           element.ref = key;
+          element.parentId = this.sceneNode.id;
           if (element.location) {
             element.location.x = x;
             element.location.y = y;
           }
+
+          const elementInstance = element.createElementInstance();
+          this.sceneNode.addElement(elementInstance);
         }
+
+        this.pixoworCore.state.getVariable<Capsule>("SceneCapsule").next(this.sceneNode.cap);
       }
     );
     // 同步装饰物

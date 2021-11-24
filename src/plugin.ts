@@ -8,7 +8,7 @@ export class SceneEditorPlugin extends Plugin {
   }
 
   activate() {
-    this.pixoworCore.stateManager.registerComponent("SceneEditor", <Component>SceneEditorComponent);
+    this.pixoworCore.state.registerComponent("SceneEditor", <Component>SceneEditorComponent);
     // this.pixoworCore.workspace.on(UIEvents.)
     this.pixoworCore.workspace.emit(UIEvents.INJECT_EDITOR_AREA, {
       componentName: "SceneEditor",
