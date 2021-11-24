@@ -257,9 +257,9 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
     );
     // 创建物件
     this.sceneEditorCanvas.on(
-      SceneEditorEmitType.CreateElement,
+      SceneEditorEmitType.CreateElements,
       (datas: ElementInstance[]) => {
-        console.log("CreateElement: ", datas);
+        console.log("CreateElements: ", datas);
         for (const moss of datas) {
           const {location, ref, id} = moss;
 
@@ -267,7 +267,7 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
           const cap = new Capsule();
           const element = cap.add.element();
           element.id = id;
-          element.ref = ref;
+          if (ref) element.ref = ref;
           element.parentId = this.sceneNode.id;
           if (location && element.location) {
             element.location.x = location.x;
@@ -283,16 +283,16 @@ export class SceneEditorComponent implements OnInit, AfterViewInit {
     );
     // 同步物件
     this.sceneEditorCanvas.on(
-      SceneEditorEmitType.SyncElement,
+      SceneEditorEmitType.SyncElements,
       (datas: ElementInstance[]) => {
-        console.log("SyncElement: ", datas);
+        console.log("SyncElements: ", datas);
       }
     );
     // 删除物件
     this.sceneEditorCanvas.on(
-      SceneEditorEmitType.DeleteElement,
+      SceneEditorEmitType.DeleteElements,
       (ids: number[]) => {
-        console.log("DeleteElement: ", ids);
+        console.log("DeleteElements: ", ids);
       }
     );
     // 创建墙体
